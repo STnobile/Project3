@@ -19,10 +19,27 @@ def get_info_users_data():
     """
     print("Please enter your details")
     print("The data should follow the form, separated by commas.")
-    print("Example: Name,Data of Birth,City,Amount,Categories,Grape varieties.\n")
-
+    print("Example: Name,Data of Birth,City,Amount,Categories,Grapevarieties\n")
+    
     data_str = input("Insert your data here: \n")
-    print(f'The data is {data_str}')
+    
+    user_data = data_str.split(",")
+    validate_data(user_data)
+ 
 
+def validate_data(values):
+    """
+    Here, we converts the strings to integers.
+    Set the value error if it wont respect the int,
+    or if the users insert more info.
+    """
+    try:
+        if len(values) !=6:
+            raise ValueError(
+                f"Required 6 value, {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data : {e}, try again.\n")
 
 get_info_users_data()
+
