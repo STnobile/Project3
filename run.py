@@ -12,8 +12,17 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('usersdata')
 
-info = SHEET.worksheet("info")
 
-data = info.get_all_values()
+def get_info_users_data():
+    """ 
+    Get the info from the users
+    """
+    print("Please enter your details")
+    print("The data should follow the form, separated by commas.")
+    print("Example: Name,Data of Birth,City,Amount,Categories,Grape varieties.\n")
 
-print(data)
+    data_str = input("Insert your data here: \n")
+    print(f'The data is {data_str}')
+
+
+get_info_users_data()
