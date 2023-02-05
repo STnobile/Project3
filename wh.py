@@ -23,11 +23,22 @@ def get_info_data():
     while True:
         print("Please enter your details")
         print("The data should follow the form, separated by commas.")
-        print("Example: Name, Data of Birth, City, Amount, Categories, Grapes varieties \n")
+        print("Example: Name, Date of Birth, City, €, Categories, Grape \n")
        
-        data_str = input("Insert your data here: \n")
+        print("Welcome to WH.net \n")
+        data_str = input("Insert your Name and Surname: \n")
+
+        data_str = input("Insert your Date of Birth : \n ")
+        
+        data_str = input("Insert your City: \n")
+        
+        data_str = input("Insert your Amount: \n")
+        
+        data_str = input("Insert your Category: \n")
+        
+        data_str = input("Insert your Grape varieties: \n")
        
-        info_data = data_str.split(",")
+        info_data = data_str.title()
 
         if validate_data(info_data):
             print("Data is valid!")
@@ -44,7 +55,6 @@ def validate_data(values):
     """
     try:
         # Name, Date of Birth, City, Amount, Category, Grape varieties.
-        [int(values[3])]
         if len(values) != 6:
             raise ValueError(
                 f"Required 6 value, {len(values)}"
@@ -67,5 +77,4 @@ def update_info_worksheet(data):
 
 
 data = get_info_data()
-info_data = [list(values) for values in data]
-update_info_worksheet(info_data)
+update_info_worksheet(data)
