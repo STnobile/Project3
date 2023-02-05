@@ -5,7 +5,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('wh-users.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -20,19 +20,19 @@ def get_info_data():
     via terminal, which must be a string of 6 number separated by commas.
     The loop request data until it is valid.
     """
-    while True: 
-         print("Please enter your details")
-         print("The data should follow the form, separated by commas.")
-         print("Example: Name,Data of Birth,City,Amount,Categories,Grapevarieties.\n")
+    while True:
+        print("Please enter your details")
+        print("The data should follow the form, separated by commas.")
+        print("Example: Name, Data of Birth, City, Amount, Categories, Grapes varieties \n")
+       
+        data_str = input("Insert your data here: \n")
+       
+        info_data = data_str.split(",")
 
-    
-         data_str = input("Insert your data here: \n")     
-         info_data = data_str.split(",")
-    
-         if validate_data(data):
+        if validate_data(info_data):
             print("Data is valid!")
             break
-    
+
     return info_data
 
 
@@ -43,14 +43,15 @@ def validate_data(values):
     or if the users insert more info.
     """
     try:
-        [len(value) for value in values]
+        # Name, Date of Birth, City, Amount, Category, Grape varieties.
+        [int(values[3])]
         if len(values) != 6:
             raise ValueError(
                 f"Required 6 value, {len(values)}"
             )
     except ValueError as e:
-         print(f"Invalid data : {e}, try again.\n")
-         return False  
+        print(f"Invalid data : {e}, try again.\n")
+        return False
 
     return True
 
@@ -66,5 +67,5 @@ def update_info_worksheet(data):
 
 
 data = get_info_data()
-info_data = [len(value) for value in data]
+info_data = [list(values) for values in data]
 update_info_worksheet(info_data)
