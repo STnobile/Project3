@@ -17,8 +17,8 @@ WELCOME_MSG = """
 Welcome to WH.net
 
 Please enter your details
-The data should follow the form, separated by commas.
-Example: Name, Date of Birth, City, €, Categories, Grape
+The data should follow the form. Pay attention to the EX.
+Example: Name, Date of Birth, City, amount, Categories, Grape.
 
 1. Enter your data.
 2. View subscribers stats
@@ -51,7 +51,7 @@ def input_user_name():
 
 
 def validate_category(category):
-    if not len(category.split(" ")) >= 2:
+    if not len(category.split(" ")) >= 1:
         print(("Category not found it, please try again.."))
         return False
 
@@ -63,7 +63,7 @@ def input_usr_category():
     while not valid:
         usr_category = input(
             "Insert your favorite wine Category.(Ex.Red,White)\n")
-        if not len(usr_category.split(" ")) >= 2:
+        if not len(usr_category.split(" ")) >= 1:
             print("Category not found it, please try again..")
             continue
         else:
@@ -122,12 +122,32 @@ def update_info_worksheet(data):
     print("Worksheet updated successfully.\n")
 
 
+# def amount(usr_amount):
+#     if not usr_amount(int[0 <= 350]):
+#        print("You are been registered as a Standard MBS.")
+#     else:
+#         calculate_mbs_data(usr_amount_row)
+
+
+def calculate_mbs_data():
+    """
+    The MBS is our memberships plan that assign the perfect offer to the user.
+
+    We calculate it using the AMOUNT our user insert. Once that is insert
+    it will give the MBS for them. 
+
+    The MBS is calculate :
+    - standard = Amount ( 0 - 350 )
+    - advance = Amount ( 350 - 700)
+    - elite  = Amount ( =>700)
+    """
+    print("You are being eligible for the MBS..\n")
+    mbs = SHEET.worksheet("mbs").get_values()
+    mbs_row = mbs[-1]
+    print(mbs_row)
+
+
 if __name__ == "__main__":
     data = get_info_data()
     update_info_worksheet(data)
-
-
-# Welcome message
-# 1. Input my data
-# a. View my membership
-# b.
+    calculate_mbs_data()
