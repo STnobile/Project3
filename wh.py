@@ -50,6 +50,26 @@ def input_user_name():
     #     continue
 
 
+def validate_category(category):
+    if not len(category.split(" ")) >= 2:
+        print(("Category not found it, please try again.."))
+        return False
+
+    return category.title()
+
+
+def input_usr_category():
+    valid = False
+    while not valid:
+        usr_category = input(
+            "Insert your favorite wine Category.(Ex.Red,White)\n")
+        if not len(usr_category.split(" ")) >= 2:
+            print("Category not found it, please try again..")
+            continue
+        else:
+            valid = True
+
+    return usr_category.title()
 
 
 def validate_amount(amount):
@@ -89,32 +109,7 @@ def get_info_data():
 
     usr_vr = input("Insert your Grape varieties: \n")
 
-    # info_data = data_str.title()
-
-    # if validate_data(info_data):
-    #     print("Data is valid!")
-    #     break
-
-    # return info_data
-
     return [usr_name, usr_dob, usr_residency, usr_amount, usr_category, usr_vr]
-
-
-# def validate_data(values):
-#    """
-#    Here, we converts the strings to integers.
-#    Set the value error if it wont respect the int,
-#    or if the users insert more info.
-#    """
-#    try:
-#        # Name, Date of Birth, City, Amount, Category, Grape varieties.
-#        if len(values) != 25:
-#            raise ValueError(f"Required 6 value, {len(values)}")
-#    except ValueError as e:
-#        print(f"Invalid data : {e}, try again.\n")
-#        return False
-
-#    return True
 
 
 def update_info_worksheet(data):
