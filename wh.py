@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -122,11 +123,25 @@ def update_info_worksheet(data):
     print("Worksheet updated successfully.\n")
 
 
-# def amount(usr_amount):
-#     if not usr_amount(int[0 <= 350]):
-#        print("You are been registered as a Standard MBS.")
-#     else:
-#         calculate_mbs_data(usr_amount_row)
+def update_mbs_worksheet(data):
+    """
+    Update worksheet, add new row with the list data provided
+    """
+    print("Updating worksheet...\n")
+    mbs_worksheet = SHEET.worksheet("mbs")
+    mbs_worksheet.append_row(data)
+    print("Worksheet updated successfully.\n")
+
+
+def calculate_mbs_usr_amount(usr_amount):
+    if usr_amount < 350:
+        print("You are a Standard MBS")
+    elif usr_amount <= 700:
+        print("You are an Advanced MBS")
+    else:
+        print("You are an Elite MBS")
+
+    return update_mbs_worksheet([usr_amount])
 
 
 def calculate_mbs_data():
@@ -139,15 +154,16 @@ def calculate_mbs_data():
     The MBS is calculate :
     - standard = Amount ( 0 - 350 )
     - advance = Amount ( 350 - 700)
-    - elite  = Amount ( =>700)
+    - elite  = Amount ( => 700)
     """
     print("You are being eligible for the MBS..\n")
-    mbs = SHEET.worksheet("mbs").get_values()
-    mbs_row = mbs[-1]
-    print(mbs_row)
+    mbs = SHEET.worksheet("mbs").get_note('D2')
+    row_mbs = mbs[-2]
+    print(row_mbs)
 
 
 if __name__ == "__main__":
     data = get_info_data()
     update_info_worksheet(data)
     calculate_mbs_data()
+    update_mbs_worksheet(data)
