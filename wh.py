@@ -152,14 +152,14 @@ def calculate_mbs_data():
     it will give the MBS for them. 
 
     The MBS is calculate :
-    - standard = Amount ( 0 - 350 )
-    - advance = Amount ( 350 - 700)
-    - elite  = Amount ( => 700)
+    - standard = Amount ( < 350 )
+    - advance = Amount ( <= 700)
+    - elite  = Amount ( > 700)
     """
     print("You are being eligible for the MBS..\n")
-    mbs = SHEET.worksheet("mbs").get_note('D2')
-    row_mbs = mbs[-2]
-    print(row_mbs)
+    row_count = SHEET.worksheet("mbs").row_count
+    the_value = SHEET.worksheet("mbs").cell(row_count, 3).value
+    print(the_value)
 
 
 if __name__ == "__main__":
