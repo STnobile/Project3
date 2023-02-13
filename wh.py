@@ -22,15 +22,48 @@ MBS_USER_CATEGORY_AMOUNT = {
 }
 
 WELCOME_MSG = """
-Welcome to WH.net
+Welcome to Wine-Hub.net
+  It is the first European platform entirely dedicated
+  to buying and selling of fine wines
+  and spirits for individuals and traders.
 
-Please enter your details
-The data should follow the form. Pay attention to the EX.
-Example: Name, Date of Birth, City, amount, Categories, Grape.
+The application has 2 steps
 
 1. Enter your data.
-2. View subscribers stats
+2. Calculate the best membership (MBS) plan for you
+   which can be:
+   - Standard for small businesses.
+   - Advance for medium businesses.
+   - Elite for wine brokers and large businesses.
 """
+CATEGORY_MSG = """
+Select category:
+
+Red
+White
+Rosè
+Bubbles
+Spitits(ex. vodka,gin,rhum)
+
+"""
+
+# def check_existing_subscription():
+#     user_name = input("Enter your name")
+#     mbs_worksheet = SHEET.worksheet("mbs")
+#     cell = mbs_worksheet.find(user_name)
+#     if not cell:
+#         print("User data not found")
+#         return
+    
+#     row = cell.row
+#     index = -1
+#     for category_index in row[1:]:
+#         if row[category_index]:
+#             index = category_index
+#             break
+
+#     category_label = ["Standard", "Advanced", "Elite"][index - 1]
+#     print(f"You are a {category_label} customer.")
 
 
 def validate_name(name):
@@ -65,16 +98,14 @@ def validate_category(category):
 def input_usr_category():
     valid = False
     while not valid:
-        usr_category = input(
-            "Insert your favorite wine Category.(Ex.Red,White)\n"
-        )
-        if not len(usr_category.split(" ")) >= 1:
+        usr_cat = input(CATEGORY_MSG)
+        if not len(usr_cat.split(" ")) >= 1:
             print("Category not found it, please try again..")
             continue
         else:
             valid = True
 
-    return usr_category.title()
+    return usr_cat.title()
 
 
 def validate_amount(amount):
@@ -87,31 +118,19 @@ def validate_amount(amount):
 
 def input_user_dob():
     while True:
-        usr_dob = input("Insert your Date of Birth in MM/DD/YYYY format: \n ")
+        usr_dob = input("Insert your Date of Birth in DD/MM/YYYY format: \n ")
         try:
-            return str(datetime.strptime(usr_dob, "%m/%d/%Y"))
+            return str(datetime.strptime(usr_dob, "%d/%m/%Y").date())
         except ValueError:
             print("Invalid date format. Please try again..")
-
-
-# def input_user_category():
-#     CATEGORY_MSG = """
-#     Select category:
-#     1. Red
-#     2. White
-#     """
-#     while True:
-#         usr_category = input(CATEGORY_MSG)
-#         try:
-#             return datetime.strptime(usr_dob, "%m/%d/%Y")
-#         except ValueError:
-#             print("Invalid date format. Please try again..")
 
 
 def input_amount():
     while True:
         try:
-            user_amount = input("Insert your Amount: \n")
+            user_amount = input(
+                "Insert your weekly outcome on spirits & wine:\n"
+            )
             user_amount = int(user_amount)
             if user_amount <= 0:
                 raise ValueError("Invalid amount")
@@ -123,7 +142,7 @@ def input_amount():
 def get_info_data():
     """
     Get the info from the users.
-    Rub while loop to collect a valid data from the user,
+    Run while loop to collect a valid data from the user,
     via terminal, which must be a string of 6 number separated by commas.
     The loop request data until it is valid.
     """
@@ -132,40 +151,59 @@ def get_info_data():
     usr_name = input_user_name()
     usr_dob = input_user_dob()
 
-    usr_residency = input("Insert your Residency (Ex. London): \n")
+    usr_resid = input("Insert your residence (Ex. London): \n")
 
     usr_amount = input_amount()
 
-    usr_category = input_usr_category()
+    usr_cat = input_usr_category()
 
     usr_vr = input("Insert your Grape varieties: \n")
 
-    return [usr_name, usr_dob, usr_residency, usr_amount, usr_category, usr_vr]
+    return [
+        usr_name,
+        usr_dob,
+        usr_resid.title(),
+        usr_amount,
+        usr_cat,
+        usr_vr.title(),
+    ]
 
 
 def update_info_worksheet(data):
     """
     Update worksheet, add new row with the list data provided
     """
-    print("Updating worksheet...\n")
+    print("Analysing your data...\n")
     info_worksheet = SHEET.worksheet("info")
     info_worksheet.append_row(data)
-    print("Worksheet updated successfully.\n")
+    print("Data updated successfully.\n")
 
 
 def update_mbs_worksheet(data):
     """
     Update worksheet, add new row with the list data provided
     """
-    print("Updating worksheet...\n")
+
     mbs_worksheet = SHEET.worksheet("mbs")
     mbs_worksheet.append_row(data)
-    print("Worksheet updated successfully.\n")
+    print("MBS updated successfully.\n")
 
 
 def calculate_mbs_usr_amount(username, usr_amount):
+    """
+    The MBS is our memberships plan that assign the perfect offer to the user.
+
+    We calculate it using the AMOUNT our users insert. Once that is insert
+    it will give the MBS for them.
+
+    The MBS is calculate :
+    - standard = Amount ( < 350 )
+    - advance = Amount ( <= 700)
+    - elite  = Amount ( > 700)
+    """
     category_data = [None] * 4
     category_data[0] = username
+    print("Calculating your MBS...\n")
 
     for category_key, category_value in MBS_USER_CATEGORY_AMOUNT.items():
         min_amount, max_amount = category_key
@@ -176,41 +214,11 @@ def calculate_mbs_usr_amount(username, usr_amount):
     category_data[category_sheet_index] = usr_amount
     return update_mbs_worksheet(category_data)
 
-    # if usr_amount < 350:
-    #     print("You are a Standard MBS")
-    # elif usr_amount <= 700:
-    #     print("You are an Advanced MBS")
-    # else:
-    #     print("You are an Elite MBS")
-
-
-def calculate_mbs_data(data):
-    """
-    The MBS is our memberships plan that assign the perfect offer to the user.
-
-    We calculate it using the AMOUNT our user insert. Once that is insert
-    it will give the MBS for them.
-
-    The MBS is calculate :
-    - standard = Amount ( < 350 )
-    - advance = Amount ( <= 700)
-    - elite  = Amount ( > 700)
-    """
-    print("You are being eligible for the MBS..\n")
-    # row_count = SHEET.worksheet("mbs").row_count
-    # print(row_count)
-    # print(data)
-    # the_value = SHEET.worksheet("mbs").cell(row_count, 3).value
-    the_value = data[3]
-    print(the_value)
-
 
 def main():
     data = get_info_data()
     update_info_worksheet(data)
-    # calculate_mbs_data(data)
     calculate_mbs_usr_amount(data[0], data[3])
-    # update_mbs_worksheet([data[0], data[3]])
 
 
 if __name__ == "__main__":
