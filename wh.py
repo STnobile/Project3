@@ -47,24 +47,6 @@ Spitits(ex. vodka,gin,rhum)
 
 """
 
-# def check_existing_subscription():
-#     user_name = input("Enter your name")
-#     mbs_worksheet = SHEET.worksheet("mbs")
-#     cell = mbs_worksheet.find(user_name)
-#     if not cell:
-#         print("User data not found")
-#         return
-    
-#     row = cell.row
-#     index = -1
-#     for category_index in row[1:]:
-#         if row[category_index]:
-#             index = category_index
-#             break
-
-#     category_label = ["Standard", "Advanced", "Elite"][index - 1]
-#     print(f"You are a {category_label} customer.")
-
 
 def validate_name(name):
     if not len(name.split(" ")) > 2:
@@ -146,7 +128,7 @@ def get_info_data():
     via terminal, which must be a string of 6 number separated by commas.
     The loop request data until it is valid.
     """
-    # while True:
+    
     print(WELCOME_MSG)
     usr_name = input_user_name()
     usr_dob = input_user_dob()

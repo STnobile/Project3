@@ -1,14 +1,18 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome STnobile,
+# Wine-Hub
+### It is the first European platform entirely dedicated to buying and selling of fine wines and spirits for individuals and traders.
+![devises reponsive](/asset/images/pep8c.png)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* The file that contains my code is called `wh.py`
+* The spreadsheet that is connected to is called `usersdata`
+* The application has two steps:
+    - Enter your data.
+    - Calculate the best membership (MBS) plan for you
+    which can be:
+   - `Standard` for small businesses.
+   - `Advance` for medium businesses.
+   - `Elite` for wine brokers and large businesses.
 
 ## Creating the Heroku app
 
@@ -23,9 +27,30 @@ If you have credentials, such as in the Love Sandwiches project, you must create
 
 Connect your GitHub repository and deploy as normal.
 
-## Constraints
+## Testing
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+I have manually tested this proiect by doing the following
 
------
-Happy coding!
+ • Daccod the rode throuch a DED& lintor and confirmed there ore no problem.
+
+• Given invalid inouts: strinas when numbers are expected out of bounds inouts. same inbut twice
+Tested in my local terminal and the Code Institute Heroku terminal.
+
+## Bugs
+
+- When I started the project I had some issue to make the python format, adding to much space through the function and loop, then I realised that issus and fix it removing the extra spaces.
+
+- My validation for the function calculate_mbs_usr_amount were wrong becuse I couldn’t not be able to extrac the data that it was needed.
+
+    
+       The way i resolved my issue was just adding the
+        `(data[0], data[3])`
+        to the terminal and it worked.
+
+
+## Validator Testing
+  - PEP8
+      -  No errors were returned from PEPSonline com
+
+
+      ![devises reponsive](asset/images/pep8c.png)
