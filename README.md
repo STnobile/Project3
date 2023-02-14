@@ -33,19 +33,16 @@ The MBS is divided in three slots
 # To the App.
  This is the firt part of the project where is explained the steps to follow.
 
- ![devises reponsive](/asset/images/present.app.png)
+  -- ![devises reponsive](/asset/images/present.app.png)
 
 After it has been reed it, the can proceed this the application.
 
-- ![devises reponsive](/asset/images/)
--
-- 
-- 
-- 
+--  ![devises reponsive](/asset/images/app.start.png)
 
 Then, we will extract the amout used and calculate the MBS,
 in this case the customer as been elected for an Elite MBS.
-![devises reponsive](/asset/images/mbs.png)
+
+-- ![devises reponsive](/asset/images/mbs.png)
 
 ## Creating the Heroku app
 
