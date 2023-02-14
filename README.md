@@ -4,7 +4,7 @@
 ### It is the first European platform entirely dedicated to buying and selling of fine wines and spirits for individuals and traders.
 ![devises reponsive](/asset/images/iu.de.png)
 
-* The file that contains my code is called `wh.py`
+* The file that contains my code is called `run.py`
 * The spreadsheet that is connected to is called `usersdata`
 * The application has two steps:
     - Enter your data.
@@ -13,6 +13,39 @@
    - `Standard` for small businesses.
    - `Advance` for medium businesses.
    - `Elite` for wine brokers and large businesses.
+
+
+# How it works..
+ It requires some general data to start, such as: 'name, date of birth, you recidence, amout you spent on a week, a category of spirits or wines and the grape varieties.
+
+Once the user insert all the data we will calculate the best MBS for the users.
+MBS stands for membership plan.
+The data that we are going to target is the weekly outcome , so called "Amount" on the spreadsheet.
+
+After the users insert the amount it will be calculated in our MBS and depending of it will give the best plan for the users.
+
+The MBS is divided in three slots
+- `Standard` to all the users with an out come between 0 and 350 €/£.
+- `Advance`  to all the users with an out come between 351 to 700 €/£.
+- `Elite`  to all the users than have an out come bigger that 701 €/ £ per week.
+
+
+# To the App.
+ This is the firt part of the project where is explained the steps to follow.
+
+ ![devises reponsive](/asset/images/present.app.png)
+
+After it has been reed it, the can proceed this the application.
+
+- ![devises reponsive](/asset/images/)
+-
+- 
+- 
+- 
+
+Then, we will extract the amout used and calculate the MBS,
+in this case the customer as been elected for an Elite MBS.
+![devises reponsive](/asset/images/mbs.png)
 
 ## Creating the Heroku app
 
