@@ -2,7 +2,7 @@
 
 # Wine-Hub
 ### It is the first European platform entirely dedicated to buying and selling of fine wines and spirits for individuals and traders.
-![devises reponsive](/asset/images/pep8c.png)
+![devises reponsive](/asset/images/iu.de.png)
 
 * The file that contains my code is called `wh.py`
 * The spreadsheet that is connected to is called `usersdata`

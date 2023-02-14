@@ -139,7 +139,7 @@ def get_info_data():
 
     usr_cat = input_usr_category()
 
-    usr_vr = input("Insert your Grape varieties: \n")
+    usr_vr = input("What’s your favourite style: \n")
 
     return [
         usr_name,
