@@ -21,6 +21,7 @@ MBS_USER_CATEGORY_AMOUNT = {
     (700, math.inf): (3, "Elite"),
 }
 
+# Message to the user for following the application.
 WELCOME_MSG = """
 Welcome to Wine-Hub.net
   It is the first European platform entirely dedicated
@@ -92,6 +93,9 @@ def validate_category(category):
 
 
 def input_usr_category():
+    """
+    Allows the users to insert more than one word.
+    """
     valid = False
     while not valid:
         usr_cat = input(CATEGORY_MSG)
@@ -105,6 +109,10 @@ def input_usr_category():
 
 
 def input_user_dob():
+    """
+    This function check if the users insert the date of birth 
+    following the format assigned.
+    """
     while True:
         usr_dob = input("Insert your Date of Birth in DD/MM/YYYY format: \n ")
         try:
@@ -114,6 +122,9 @@ def input_user_dob():
 
 
 def validate_amount(amount):
+    """
+    This function is for the user to avoid use words instead of digits.
+    """
     if not amount.isdigit():
         print("Invalid amount entered..")
         return False
@@ -122,6 +133,12 @@ def validate_amount(amount):
 
 
 def input_amount():
+    """
+    Here the function not allow negative number,
+    in case that will be the case..
+    It will give an error and will suggest to enter
+    a valid data.
+    """
     while True:
         try:
             user_amount = input(
@@ -191,7 +208,7 @@ def calculate_mbs_usr_amount(username, usr_amount):
     """
     The MBS is our memberships plan that assign the perfect offer to the user.
 
-    We calculate it using the AMOUNT our users insert. Once that is insert
+    We calculate it using the AMOUNT our users inserted on the form. Once that is insert
     it will give the MBS for them.
 
     The MBS is calculate :
