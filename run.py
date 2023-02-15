@@ -34,7 +34,7 @@ The application has 2 steps
    which can be:
    - Standard for small businesses.
    - Advance for medium businesses.
-   - Elite for wine brokers and large businesses.
+   - Elite for wine brokers and large businesses. 
 """
 CATEGORY_MSG = """
 Select category:
@@ -49,6 +49,10 @@ Spitits(ex. vodka,gin,rhum)
 
 
 def validate_name(name):
+    """ 
+    This function validate the name and surname insert from the user
+    and must be separated with a space.
+    """
     if not len(name.split(" ")) > 2:
         print("Surname not provided. Please try again..")
         return False
@@ -57,6 +61,11 @@ def validate_name(name):
 
 
 def input_user_name():
+    """
+    Here the function check if you have insert your second word or surname,
+    if the user did not it will give an error and will ask the user
+    to insert the data one more time.
+    """
     valid = False
     while not valid:
         usr_name = input("Insert your Name and Surname: \n")
@@ -70,7 +79,12 @@ def input_user_name():
 
 
 def validate_category(category):
-    if not len(category.split(" ")) >= 1:
+    """
+    This function check allow the user to use one or more word to define
+    the category that he chooses.
+    ex. red, white, fortified wine, wodkas. and so on.
+    """
+    if not len(category.split(" ")) > 1:
         print(("Category not found it, please try again.."))
         return False
 
@@ -90,14 +104,6 @@ def input_usr_category():
     return usr_cat.title()
 
 
-def validate_amount(amount):
-    if not amount.isdigit():
-        print("Invalid amount entered..")
-        return False
-
-    return amount
-
-
 def input_user_dob():
     while True:
         usr_dob = input("Insert your Date of Birth in DD/MM/YYYY format: \n ")
@@ -105,6 +111,14 @@ def input_user_dob():
             return str(datetime.strptime(usr_dob, "%d/%m/%Y").date())
         except ValueError:
             print("Invalid date format. Please try again..")
+
+
+def validate_amount(amount):
+    if not amount.isdigit():
+        print("Invalid amount entered..")
+        return False
+
+    return amount
 
 
 def input_amount():
@@ -128,7 +142,7 @@ def get_info_data():
     via terminal, which must be a string of 6 number separated by commas.
     The loop request data until it is valid.
     """
-    
+
     print(WELCOME_MSG)
     usr_name = input_user_name()
     usr_dob = input_user_dob()
@@ -139,7 +153,7 @@ def get_info_data():
 
     usr_cat = input_usr_category()
 
-    usr_vr = input("What’s your favourite style: \n")
+    usr_vr = input("What's your favourite style: \n")
 
     return [
         usr_name,
@@ -169,6 +183,8 @@ def update_mbs_worksheet(data):
     mbs_worksheet = SHEET.worksheet("mbs")
     mbs_worksheet.append_row(data)
     print("MBS updated successfully.\n")
+    print("If you did not follow our form or left empy space,")
+    print("you will be removed from our platform")
 
 
 def calculate_mbs_usr_amount(username, usr_amount):
