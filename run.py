@@ -23,7 +23,7 @@ MBS_USER_CATEGORY_AMOUNT = {
 
 # Message to the user for following the application.
 WELCOME_MSG = """
-Welcome to Wine-Hub.net
+Welcome to Hub.
   It is the first European platform entirely dedicated
   to buying and selling of fine wines
   and spirits for individuals and traders.
@@ -35,7 +35,7 @@ The application has 2 steps
    which can be:
    - Standard for small businesses.
    - Advance for medium businesses.
-   - Elite for wine brokers and large businesses. 
+   - Elite for wine brokers and large businesses.
 """
 CATEGORY_MSG = """
 Select category:
@@ -50,7 +50,7 @@ Spitits(ex. vodka,gin,rhum)
 
 
 def validate_name(name):
-    """ 
+    """
     This function validate the name and surname insert from the user
     and must be separated with a space.
     """
@@ -110,7 +110,7 @@ def input_usr_category():
 
 def input_user_dob():
     """
-    This function check if the users insert the date of birth 
+    This function check if the users insert the date of birth,
     following the format assigned.
     """
     while True:
@@ -208,7 +208,8 @@ def calculate_mbs_usr_amount(username, usr_amount):
     """
     The MBS is our memberships plan that assign the perfect offer to the user.
 
-    We calculate it using the AMOUNT our users inserted on the form. Once that is insert
+    We calculate it using the AMOUNT our users inserted on the form.
+    Once that is insert
     it will give the MBS for them.
 
     The MBS is calculate :
