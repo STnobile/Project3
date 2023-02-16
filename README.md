@@ -6,7 +6,7 @@
 
 # Hub
 ### It is the first European platform entirely dedicated to the buying and selling of fine wines and spirits for individuals and traders.
-![devises reponsive](/asset/images/iu.de.png)
+![devises reponsive](/asset/images/iu.responcy.png)
 
 * The file that contains my code is called `run.py`
 * The spreadsheet to which you are linked is known as "usersdata."
@@ -38,7 +38,7 @@ The MBS is divided into three slots.
 # To the application.
 This is the first section of the project where the steps are explained.
 
-  -- ![devises reponsive](/asset/images/present.app.png)
+  -- ![devises reponsive](/asset/images/blueprint.png)
 
 The applicant can proceed with the application once it has been prepared.
 
